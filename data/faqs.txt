@@ -1,0 +1,141 @@
+# Synthetic Gym FAQ Dataset
+# Project: Gym FAQ RAG
+# Note: This dataset is fictional and created only for testing and learning.
+
+[FAQ-001]
+Question: What are the gym's regular weekday hours?
+Answer: The gym is open Monday through Friday from 5:00 AM to 11:00 PM.
+Source: Synthetic dataset
+
+---
+
+[FAQ-002]
+Question: What are the gym's regular weekend hours?
+Answer: The gym is open Saturday and Sunday from 7:00 AM to 9:00 PM.
+Source: Synthetic dataset
+
+---
+
+[FAQ-003]
+Question: What membership plans are available?
+Answer: The gym offers monthly, six-month, and annual membership plans.
+Source: Synthetic dataset
+
+---
+
+[FAQ-004]
+Question: Can I freeze my membership temporarily?
+Answer: Members may freeze their membership for up to 90 days once per calendar year.
+Source: Synthetic dataset
+
+---
+
+[FAQ-005]
+Question: How do I cancel my membership?
+Answer: Membership cancellations must be submitted through the front desk or member portal at least 7 days before the next billing date.
+Source: Synthetic dataset
+
+---
+
+[FAQ-006]
+Question: Will I receive a refund if I cancel in the middle of a billing period?
+Answer: The gym does not provide partial refunds for unused days remaining in a billing period after cancellation.
+Source: Synthetic dataset
+
+---
+
+[FAQ-007]
+Question: Can members bring guests?
+Answer: Members may bring one guest per visit by purchasing a guest pass.
+Source: Synthetic dataset
+
+---
+
+[FAQ-008]
+Question: How much does a guest pass cost?
+Answer: A single-day guest pass costs $15.
+Source: Synthetic dataset
+
+---
+
+[FAQ-009]
+Question: How old do I have to be to use the gym?
+Answer: Members must be at least 16 years old. Members who are 16 or 17 must have a parent or guardian sign the membership agreement.
+Source: Synthetic dataset
+
+---
+
+[FAQ-010]
+Question: Are group fitness classes included with membership?
+Answer: Standard group fitness classes are included with all active memberships unless a class is marked as a premium program.
+Source: Synthetic dataset
+
+---
+
+[FAQ-011]
+Question: Do I need to reserve a spot for group fitness classes?
+Answer: Members should reserve a spot through the member portal because class space is limited.
+Source: Synthetic dataset
+
+---
+
+[FAQ-012]
+Question: Are lockers available?
+Answer: Day-use lockers are available in the locker rooms and must be emptied before the gym closes each day.
+Source: Synthetic dataset
+
+---
+
+[FAQ-013]
+Question: Can I use chalk while lifting?
+Answer: Liquid chalk is allowed in designated lifting areas, but loose powder chalk is not permitted.
+Source: Synthetic dataset
+
+---
+
+[FAQ-014]
+Question: Do I need to re-rack weights after using them?
+Answer: Members must return plates, dumbbells, and other equipment to their proper storage areas after use.
+Source: Synthetic dataset
+
+---
+
+[FAQ-015]
+Question: What clothing and footwear are required?
+Answer: Members must wear athletic clothing and closed-toe athletic shoes in workout areas.
+Source: Synthetic dataset
+
+---
+
+[FAQ-016]
+Question: Can I record videos or take photos inside the gym?
+Answer: Personal recording is allowed only when it does not include other members without their permission and does not block equipment or walkways.
+Source: Synthetic dataset
+
+---
+
+[FAQ-017]
+Question: What payment methods does the gym accept?
+Answer: The gym accepts major credit cards, debit cards, and electronic bank payments for memberships and fees.
+Source: Synthetic dataset
+
+---
+
+[FAQ-018]
+Question: What happens if my membership payment fails?
+Answer: If a payment fails, the gym will notify the member and may temporarily suspend gym access until the balance is paid.
+Source: Synthetic dataset
+
+---
+
+[FAQ-019]
+Question: Is the gym accessible for members with disabilities?
+Answer: The gym provides step-free entry, accessible restrooms, and selected equipment designed for users with limited mobility.
+Source: Synthetic dataset
+
+---
+
+[FAQ-020]
+Question: Is the gym open on major holidays?
+Answer: The gym may use reduced hours or close on major holidays. Holiday hours are posted in the member portal and at the front desk before each holiday.
+Source: Synthetic dataset
