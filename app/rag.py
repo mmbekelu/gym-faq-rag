@@ -1,4 +1,7 @@
 from pathlib import Path
+import chromadb
+from app.config import client
+
 
 def load_faqs(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
@@ -29,3 +32,35 @@ def chunk_text(
         if end >= len(text):
             break
     return chunks
+
+def index_chunks(chunks: list[str]) -> int:
+    chroma_client = chromadb.PersistentClient(path="chroma_db")
+
+    collection = chroma_client.get_or_create_collection(
+    name="gym_faqs"
+    )
+
+    response = client.embeddings.create(
+    model="text-embedding-3-small",
+    input=chunks
+    )
+
+    embeddings = []
+
+    for result in response.data:
+        embeddings.append(result.embedding)
+
+
+    ids = []
+
+    for position in range(len(chunks)):
+        current_id = f"faq-{position}"
+        ids.append(current_id)
+
+    collection.upsert(
+    ids=ids,
+    documents=chunks,
+    embeddings=embeddings,
+    )
+
+    return len(chunks)
