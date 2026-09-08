@@ -1,7 +1,6 @@
 from pathlib import Path
-import chromadb
 from app.config import client
-
+import chromadb
 
 def load_faqs(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
@@ -9,58 +8,42 @@ def load_faqs(path: Path) -> str:
         raise ValueError("FAQ file is empty")
     return text
 
-def chunk_text(
-    text: str,
-    chunk_size: int,
-    overlap: int,
-) -> list[str]:
-    if chunk_size <= 0:
-        raise ValueError("chunk_size must be greater than 0")
-    if overlap < 0:
-        raise ValueError("overlap must be 0 or greater")
-    if overlap >= chunk_size:
-        raise ValueError("overlap must be smaller than chunk_size")
+def chunk_text(text) -> list[str]: 
+    parts = text.split("---")
+    return parts
 
-    chunks = []
-    position = 0
-
-    while position < len(text):
-        end = position + chunk_size
-        current_chunk = text[position:end]
-        chunks.append(current_chunk)
-        position += chunk_size - overlap
-        if end >= len(text):
-            break
-    return chunks
 
 def index_chunks(chunks: list[str]) -> int:
     chroma_client = chromadb.PersistentClient(path="chroma_db")
-
-    collection = chroma_client.get_or_create_collection(
-    name="gym_faqs"
-    )
-
-    response = client.embeddings.create(
-    model="text-embedding-3-small",
-    input=chunks
-    )
-
+    collection = chroma_client.get_or_create_collection(name="gym_faqs")
+    response = client.embeddings.create(model="text-embedding-3-small", 
+    input=chunks)
     embeddings = []
-
     for result in response.data:
         embeddings.append(result.embedding)
-
-
     ids = []
-
-    for position in range(len(chunks)):
-        current_id = f"faq-{position}"
-        ids.append(current_id)
-
-    collection.upsert(
-    ids=ids,
-    documents=chunks,
-    embeddings=embeddings,
-    )
-
+    for x in range(len(chunks)):
+        x = f"faqs-{x}"
+        ids.append(x)
+    collection.upsert(ids=ids, documents=chunks, embeddings=embeddings)
     return len(chunks)
+
+def retrieve(question: str, n_results: int) -> list[str]:
+    if not question.strip():
+        raise ValueError("question cannot be empty")
+    if n_results <= 0:
+        raise ValueError("n_results must be greater than 0")
+    chroma_client = chromadb.PersistentClient(path="chroma_db")
+    collection = chroma_client.get_collection(name="gym_faqs")
+    response = client.embeddings.create(model="text-embedding-3-small", input=question)
+    question_embedding = response.data[0].embedding
+    results = collection.query(query_embeddings=[question_embedding], n_results=n_results, include=["documents"])
+    documents = results["documents"][0]
+    return documents
+
+def generation(question: str, retrieved_strings: list[str]) -> str:
+    combined = " ".join(retrieved_strings)
+    instructions = "Answer only using the retrieved FAQ context. If the context does not contain the answer, do not invent an answer or gym policy."
+    input_text = f"Question:\n{question}\n\nRetrieved FAQ context:\n{combined}"
+    response = client.responses.create(model="gpt-5.6-luna", instructions=instructions, input=input_text)
+    return response.output_text

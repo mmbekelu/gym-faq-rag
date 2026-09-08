@@ -1,7 +1,3 @@
-# Synthetic Gym FAQ Dataset
-# Project: Gym FAQ RAG
-# Note: This dataset is fictional and created only for testing and learning.
-
 [FAQ-001]
 Question: What are the gym's regular weekday hours?
 Answer: The gym is open Monday through Friday from 5:00 AM to 11:00 PM.
