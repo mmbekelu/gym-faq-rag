@@ -43,7 +43,7 @@ def retrieve(question: str, n_results: int) -> list[str]:
 
 def generation(question: str, retrieved_strings: list[str]) -> str:
     combined = " ".join(retrieved_strings)
-    instructions = "Answer only using the retrieved FAQ context. If the context does not contain the answer, do not invent an answer or gym policy."
+    instructions = "Answer only using the retrieved FAQ context. If the context does not contain enough information to answer the question, reply exactly: 'I don’t have enough information in the gym FAQ to answer that.' Otherwise, answer using only the retrieved FAQ context and do not invent gym policy."
     input_text = f"Question:\n{question}\n\nRetrieved FAQ context:\n{combined}"
     response = client.responses.create(model="gpt-5.6-luna", instructions=instructions, input=input_text)
-    return response.output_text
+    return response.output_text         
