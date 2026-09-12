@@ -41,14 +41,14 @@ Source: Synthetic dataset
 ---
 
 [FAQ-007]
-Question: Can members bring guests?
-Answer: Members may bring one guest per visit by purchasing a guest pass.
+Question: Can members bring guests, friends, or someone with them to work out?
+Answer: Members may bring one guest per visit by purchasing a guest pass. This also applies when a member wants a friend to come with them or work out with them.
 Source: Synthetic dataset
 
 ---
 
 [FAQ-008]
-Question: How much does a guest pass cost?
+Question: How much does it cost to bring a guest or friend to the gym?
 Answer: A single-day guest pass costs $15.
 Source: Synthetic dataset
 
