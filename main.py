@@ -9,11 +9,11 @@ while True:
         continue
     try:
         docs = retrieve(question, 2)
-        answer = generation(question, docs)
+        answer, generation_latency_ms = generation(question, docs)
         if answer == "I don’t have enough information in the gym FAQ to answer that.": 
             docs = retrieve(question, 20)
-            answer = generation(question, docs)
-        print(answer) 
+            answer, generation_latency_ms = generation(question, docs)
+        print(answer, generation_latency_ms) 
     except APITimeoutError:
         print("The AI service took too long to respond. Please try again.")
         continue

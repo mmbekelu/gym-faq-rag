@@ -1,6 +1,7 @@
 from pathlib import Path
 from app.config import client
 import chromadb
+import time
 
 def load_faqs(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
@@ -41,9 +42,12 @@ def retrieve(question: str, n_results: int) -> list[str]:
     documents = results["documents"][0]
     return documents
 
-def generation(question: str, retrieved_strings: list[str]) -> str:
+def generation(question: str, retrieved_strings: list[str]) -> tuple[str, float]:
     combined = " ".join(retrieved_strings)
     instructions = "Answer only using the retrieved FAQ context. If the context does not contain enough information to answer the question, reply exactly: 'I don’t have enough information in the gym FAQ to answer that.' Otherwise, answer using only the retrieved FAQ context and do not invent gym policy."
     input_text = f"Question:\n{question}\n\nRetrieved FAQ context:\n{combined}"
+    start_time = time.perf_counter()
     response = client.responses.create(model="gpt-5.6-luna", instructions=instructions, input=input_text)
-    return response.output_text         
+    end_time = time.perf_counter()
+    generation_latency_ms = (end_time - start_time) * 1000
+    return response.output_text, generation_latency_ms
