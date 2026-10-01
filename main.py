@@ -2,6 +2,11 @@ from app.rag import retrieve, generation
 from openai import APITimeoutError, APIConnectionError, RateLimitError
 import openai
 import time
+from datetime import datetime
+import uuid
+import logging
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("httpx2").setLevel(logging.WARNING)
 
 while True:
     question = input("Question: ")
@@ -9,12 +14,13 @@ while True:
         print(ValueError("Enter your question please"))
         continue
     try:
+        request_id = str(uuid.uuid4())
         start_time = time.perf_counter()
         docs = retrieve(question, 2)
         answer, generation_latency_ms, input_tokens, output_tokens, total_tokens = generation(question, docs)
 
         total_generation_latency_ms = generation_latency_ms
-
+        fallback_used = False
         input_tokens_fallback = 0
         output_tokens_fallback = 0
         total_tokens_fallback = 0
@@ -22,6 +28,7 @@ while True:
             docs = retrieve(question, 20)
             answer, generation_latency_ms_fallback, input_tokens_fallback, output_tokens_fallback, total_tokens_fallback = generation(question, docs)
             total_generation_latency_ms += generation_latency_ms_fallback
+            fallback_used = True
         end_time = time.perf_counter()
         total_request_latency = (end_time - start_time) * 1000
         input_price = 0.10
@@ -29,6 +36,7 @@ while True:
         input_cost = (input_tokens + input_tokens_fallback) / 1_000_000 * input_price
         output_cost = (output_tokens + output_tokens_fallback) / 1_000_000 * output_price
         estimated_generation_cost = input_cost + output_cost
+        refused = answer == "I don’t have enough information in the gym FAQ to answer that."
         request_record = {"question": question,
                         "total_tokens": total_tokens + total_tokens_fallback,
                         "total_request_latency_ms": total_request_latency,
@@ -36,9 +44,14 @@ while True:
                         "input_tokens": input_tokens + input_tokens_fallback,
                         "output_tokens": output_tokens + output_tokens_fallback,
                         "generation_latency_ms": total_generation_latency_ms,
-                        "answer": answer
+                        "answer": answer,
+                        "fallback_used": fallback_used,
+                        "timestamp": datetime.now(),
+                        "event_name": "question_completed",
+                        "request_id": request_id,
+                        "refused": refused,
         }
-        print(request_record)
+        logging.info(request_record)
     except APITimeoutError:
         print("The AI service took too long to respond. Please try again.")
         continue
