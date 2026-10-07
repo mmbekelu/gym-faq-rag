@@ -16,17 +16,22 @@ while True:
     try:
         request_id = str(uuid.uuid4())
         start_time = time.perf_counter()
-        docs = retrieve(question, 2)
-        answer, generation_latency_ms, input_tokens, output_tokens, total_tokens = generation(question, docs)
-
+        docs, retrieved_chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms, retrieval_latency_ms, embedding_tokens  = retrieve(question, 2)
+        total_embedding_latency_ms = embedding_latency_ms
+        total_embedding_tokens = embedding_tokens
+        total_retrieval_latency_ms = retrieval_latency_ms
+        answer, generation_latency_ms, input_tokens, output_tokens, total_tokens, llm_model = generation(question, docs)
         total_generation_latency_ms = generation_latency_ms
         fallback_used = False
         input_tokens_fallback = 0
         output_tokens_fallback = 0
         total_tokens_fallback = 0
         if answer == "I don’t have enough information in the gym FAQ to answer that.": 
-            docs = retrieve(question, 20)
-            answer, generation_latency_ms_fallback, input_tokens_fallback, output_tokens_fallback, total_tokens_fallback = generation(question, docs)
+            docs, retrieved_chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms_fallback, retrieval_latency_ms_fallback, embedding_tokens_fallback = retrieve(question, 20)
+            total_embedding_latency_ms += embedding_latency_ms_fallback
+            total_embedding_tokens += embedding_tokens_fallback
+            total_retrieval_latency_ms += retrieval_latency_ms_fallback
+            answer, generation_latency_ms_fallback, input_tokens_fallback, output_tokens_fallback, total_tokens_fallback, llm_model = generation(question, docs)
             total_generation_latency_ms += generation_latency_ms_fallback
             fallback_used = True
         end_time = time.perf_counter()
@@ -50,6 +55,13 @@ while True:
                         "event_name": "question_completed",
                         "request_id": request_id,
                         "refused": refused,
+                        "retrieved_chunk_ids": retrieved_chunk_ids,
+                        "retrieval_scores": retrieval_scores,
+                        "generation_model": llm_model,
+                        "embedding_model": embedding_model,
+                        "embedding_latency_ms": total_embedding_latency_ms,
+                        "retrieval_latency_ms": total_retrieval_latency_ms,
+                        "embedding_tokens": total_embedding_tokens
         }
         logging.info(request_record)
     except APITimeoutError:
