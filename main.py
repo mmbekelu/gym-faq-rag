@@ -16,10 +16,11 @@ while True:
     try:
         request_id = str(uuid.uuid4())
         start_time = time.perf_counter()
-        docs, retrieved_chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms, retrieval_latency_ms, embedding_tokens  = retrieve(question, 2)
+        docs, retrieved_chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms, retrieval_latency_ms, embedding_tokens, upstream_request_id  = retrieve(question, 2)
         total_embedding_latency_ms = embedding_latency_ms
         total_embedding_tokens = embedding_tokens
         total_retrieval_latency_ms = retrieval_latency_ms
+        upstream_request_ids = [upstream_request_id]
         answer, generation_latency_ms, input_tokens, output_tokens, total_tokens, llm_model = generation(question, docs)
         total_generation_latency_ms = generation_latency_ms
         fallback_used = False
@@ -27,7 +28,8 @@ while True:
         output_tokens_fallback = 0
         total_tokens_fallback = 0
         if answer == "I don’t have enough information in the gym FAQ to answer that.": 
-            docs, retrieved_chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms_fallback, retrieval_latency_ms_fallback, embedding_tokens_fallback = retrieve(question, 20)
+            docs, retrieved_chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms_fallback, retrieval_latency_ms_fallback, embedding_tokens_fallback, upstream_request_id_fallback = retrieve(question, 20)
+            upstream_request_ids.append(upstream_request_id_fallback)
             total_embedding_latency_ms += embedding_latency_ms_fallback
             total_embedding_tokens += embedding_tokens_fallback
             total_retrieval_latency_ms += retrieval_latency_ms_fallback
@@ -61,17 +63,46 @@ while True:
                         "embedding_model": embedding_model,
                         "embedding_latency_ms": total_embedding_latency_ms,
                         "retrieval_latency_ms": total_retrieval_latency_ms,
-                        "embedding_tokens": total_embedding_tokens
+                        "embedding_tokens": total_embedding_tokens,
+                        "upstream_request_ids": upstream_request_ids
         }
         logging.info(request_record)
-    except APITimeoutError:
+    except APITimeoutError as error:
+        type_error = type(error).__name__
+        error_record = {
+            "event": "question_failed",
+            "error_type": type_error,
+            "request_id" : request_id
+        }
+        logging.error(error_record)
         print("The AI service took too long to respond. Please try again.")
         continue
-    except APIConnectionError:
+    except APIConnectionError as error:
+        type_error = type(error).__name__
+        error_record = {
+            "event": "question_failed",
+            "error_type": type_error,
+            "request_id" : request_id
+        }
+        logging.error(error_record)
         print("The AI service couldn't be reached. Please try again.")
         continue
-    except RateLimitError:
+    except RateLimitError as error:
+        type_error = type(error).__name__
+        error_record = {
+            "event": "question_failed",
+            "error_type": type_error,
+            "request_id" : request_id
+        }
+        logging.error(error_record)
         print("The AI service hit a usage limit. Please try again later.")
         continue
-    except openai.InternalServerError:
+    except openai.InternalServerError as error:
+        type_error = type(error).__name__
+        error_record = {
+            "event": "question_failed",
+            "error_type": type_error,
+            "request_id" : request_id
+        }
+        logging.error(error_record)
         print("The AI service had a temporary server error. Please try again later.")

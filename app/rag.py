@@ -29,7 +29,7 @@ def index_chunks(chunks: list[str]) -> int:
     collection.upsert(ids=ids, documents=chunks, embeddings=embeddings)
     return len(chunks)
 
-def retrieve(question: str, n_results: int) -> tuple[list[str], list[str], list[float], str, float, float, int]:
+def retrieve(question: str, n_results: int) -> tuple[list[str], list[str], list[float], str, float, float, int, str | None]:
     if not question.strip():
         raise ValueError("question cannot be empty")
     if n_results <= 0:
@@ -50,7 +50,8 @@ def retrieve(question: str, n_results: int) -> tuple[list[str], list[str], list[
     retrieval_scores = results["distances"][0]
     embedding_model = response.model
     embedding_tokens = response.usage.total_tokens
-    return documents, chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms, retrieval_latency_ms, embedding_tokens
+    upstream_request_id = response._request_id
+    return documents, chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms, retrieval_latency_ms, embedding_tokens, upstream_request_id
 
 def generation(question: str, retrieved_strings: list[str]) -> tuple[str, float, int, int, int, str]:
     combined = " ".join(retrieved_strings)
