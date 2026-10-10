@@ -21,7 +21,8 @@ while True:
         total_embedding_tokens = embedding_tokens
         total_retrieval_latency_ms = retrieval_latency_ms
         upstream_request_ids = [upstream_request_id]
-        answer, generation_latency_ms, input_tokens, output_tokens, total_tokens, llm_model = generation(question, docs)
+        answer, generation_latency_ms, input_tokens, output_tokens, total_tokens, llm_model, generation_request_id = generation(question, docs)
+        generation_request_ids = [generation_request_id]
         total_generation_latency_ms = generation_latency_ms
         fallback_used = False
         input_tokens_fallback = 0
@@ -33,7 +34,8 @@ while True:
             total_embedding_latency_ms += embedding_latency_ms_fallback
             total_embedding_tokens += embedding_tokens_fallback
             total_retrieval_latency_ms += retrieval_latency_ms_fallback
-            answer, generation_latency_ms_fallback, input_tokens_fallback, output_tokens_fallback, total_tokens_fallback, llm_model = generation(question, docs)
+            answer, generation_latency_ms_fallback, input_tokens_fallback, output_tokens_fallback, total_tokens_fallback, llm_model,  generation_request_id_fallback = generation(question, docs)
+            generation_request_ids.append(generation_request_id_fallback)
             total_generation_latency_ms += generation_latency_ms_fallback
             fallback_used = True
         end_time = time.perf_counter()
@@ -43,11 +45,14 @@ while True:
         input_cost = (input_tokens + input_tokens_fallback) / 1_000_000 * input_price
         output_cost = (output_tokens + output_tokens_fallback) / 1_000_000 * output_price
         estimated_generation_cost = input_cost + output_cost
+        total_embedding_price = 0.02
+        embedding_cost = (total_embedding_tokens) / 1_000_000 * total_embedding_price
+        estimated_cost_usd = embedding_cost + estimated_generation_cost
         refused = answer == "I don’t have enough information in the gym FAQ to answer that."
         request_record = {"question": question,
                         "total_tokens": total_tokens + total_tokens_fallback,
-                        "total_request_latency_ms": total_request_latency,
-                        "estimated_generation_cost": estimated_generation_cost,
+                        "total_latency_ms": total_request_latency,
+                        "estimated_generation_cost_usd": estimated_generation_cost,
                         "input_tokens": input_tokens + input_tokens_fallback,
                         "output_tokens": output_tokens + output_tokens_fallback,
                         "generation_latency_ms": total_generation_latency_ms,
@@ -64,7 +69,10 @@ while True:
                         "embedding_latency_ms": total_embedding_latency_ms,
                         "retrieval_latency_ms": total_retrieval_latency_ms,
                         "embedding_tokens": total_embedding_tokens,
-                        "upstream_request_ids": upstream_request_ids
+                        "upstream_request_ids": upstream_request_ids,
+                        "generation_request_ids": generation_request_ids,
+                        "estimated_cost_usd": estimated_cost_usd,
+                        "estimated_embedding_cost_usd": embedding_cost
         }
         logging.info(request_record)
     except APITimeoutError as error:

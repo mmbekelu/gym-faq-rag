@@ -53,7 +53,7 @@ def retrieve(question: str, n_results: int) -> tuple[list[str], list[str], list[
     upstream_request_id = response._request_id
     return documents, chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms, retrieval_latency_ms, embedding_tokens, upstream_request_id
 
-def generation(question: str, retrieved_strings: list[str]) -> tuple[str, float, int, int, int, str]:
+def generation(question: str, retrieved_strings: list[str]) -> tuple[str, float, int, int, int, str, str | None]:
     combined = " ".join(retrieved_strings)
     instructions = "Answer only using the retrieved FAQ context. If the context does not contain enough information to answer the question, reply exactly: 'I don’t have enough information in the gym FAQ to answer that.' Otherwise, answer using only the retrieved FAQ context and do not invent gym policy."
     input_text = f"Question:\n{question}\n\nRetrieved FAQ context:\n{combined}"
@@ -62,4 +62,5 @@ def generation(question: str, retrieved_strings: list[str]) -> tuple[str, float,
     end_time = time.perf_counter()
     generation_latency_ms = (end_time - start_time) * 1000
     llm_model = response.model
-    return response.output_text, generation_latency_ms, response.usage.input_tokens, response.usage.output_tokens, response.usage.total_tokens, llm_model
+    generation_request_id = response._request_id
+    return response.output_text, generation_latency_ms, response.usage.input_tokens, response.usage.output_tokens, response.usage.total_tokens, llm_model, generation_request_id
