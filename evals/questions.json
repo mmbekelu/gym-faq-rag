@@ -1,0 +1,10 @@
+[
+  {
+    "id": "eval-001",
+    "question": "Is the gym accessible for members with disabilities?",
+    "expected_faq_ids": ["FAQ-019"],
+    "expected_refusal": false,
+    "category": "direct",
+    "must_include": ["step-free entry"]
+  }
+]
