@@ -7,3 +7,6 @@ print(len(questions))
 
 for question in questions:
     print(question["id"])
+    print(question["question"])
+    print(question["expected_refusal"])
+    print(question["expected_faq_ids"])

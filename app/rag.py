@@ -2,6 +2,7 @@ from pathlib import Path
 from app.config import client
 import chromadb
 import time
+import uuid
 
 def load_faqs(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
@@ -64,3 +65,26 @@ def generation(question: str, retrieved_strings: list[str]) -> tuple[str, float,
     llm_model = response.model
     generation_request_id = response._request_id
     return response.output_text, generation_latency_ms, response.usage.input_tokens, response.usage.output_tokens, response.usage.total_tokens, llm_model, generation_request_id
+
+def process_question(question):
+    request_id = str(uuid.uuid4())
+    start_time = time.perf_counter()
+    docs, retrieved_chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms, retrieval_latency_ms, embedding_tokens, upstream_request_id  = retrieve(question, 2)
+    upstream_request_ids = [upstream_request_id]
+    total_embedding_latency_ms = embedding_latency_ms
+    total_embedding_tokens = embedding_tokens
+    total_retrieval_latency_ms = retrieval_latency_ms
+    answer, generation_latency_ms, input_tokens, output_tokens, total_tokens, llm_model, generation_request_id = generation(question, docs)
+    generation_request_ids = [generation_request_id]
+    total_generation_latency_ms = generation_latency_ms
+    fallback_used = False
+    input_tokens_fallback = 0
+    output_tokens_fallback = 0
+    total_tokens_fallback = 0
+    if answer == "I don’t have enough information in the gym FAQ to answer that.":
+        docs, retrieved_chunk_ids, retrieval_scores, embedding_model, embedding_latency_ms_fallback, retrieval_latency_ms_fallback, embedding_tokens_fallback, upstream_request_id_fallback = retrieve(question, 20)
+        upstream_request_ids.append(upstream_request_id_fallback)
+        total_embedding_latency_ms += embedding_latency_ms_fallback
+        total_embedding_tokens += embedding_tokens_fallback
+        total_retrieval_latency_ms += retrieval_latency_ms_fallback
+        answer, generation_latency_ms_fallback, input_tokens_fallback, output_tokens_fallback, total_tokens_fallback, llm_model,  generation_request_id_fallback = generation(question, docs)
