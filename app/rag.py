@@ -3,6 +3,7 @@ from app.config import client
 import chromadb
 import time
 import uuid
+from datetime import datetime
 
 def load_faqs(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
@@ -88,3 +89,43 @@ def process_question(question):
         total_embedding_tokens += embedding_tokens_fallback
         total_retrieval_latency_ms += retrieval_latency_ms_fallback
         answer, generation_latency_ms_fallback, input_tokens_fallback, output_tokens_fallback, total_tokens_fallback, llm_model,  generation_request_id_fallback = generation(question, docs)
+        generation_request_ids.append(generation_request_id_fallback)
+        total_generation_latency_ms += generation_latency_ms_fallback
+        fallback_used = True
+    end_time = time.perf_counter()
+    total_request_latency = (end_time - start_time) * 1000
+    input_price = 0.10
+    output_price = 0.50
+    input_cost = (input_tokens + input_tokens_fallback) / 1_000_000 * input_price
+    output_cost = (output_tokens + output_tokens_fallback) / 1_000_000 * output_price
+    estimated_generation_cost = input_cost + output_cost
+    total_embedding_price = 0.02
+    embedding_cost = (total_embedding_tokens) / 1_000_000 * total_embedding_price
+    estimated_cost_usd = embedding_cost + estimated_generation_cost
+    refused = answer == "I don’t have enough information in the gym FAQ to answer that."
+    request_record = {"question": question,
+                            "total_tokens": total_tokens + total_tokens_fallback,
+                            "total_latency_ms": total_request_latency,
+                            "estimated_generation_cost_usd": estimated_generation_cost,
+                            "input_tokens": input_tokens + input_tokens_fallback,
+                            "output_tokens": output_tokens + output_tokens_fallback,
+                            "generation_latency_ms": total_generation_latency_ms,
+                            "answer": answer,
+                            "fallback_used": fallback_used,
+                            "timestamp": datetime.now(),
+                            "event_name": "question_completed",
+                            "request_id": request_id,
+                            "refused": refused,
+                            "retrieved_chunk_ids": retrieved_chunk_ids,
+                            "retrieval_scores": retrieval_scores,
+                            "generation_model": llm_model,
+                            "embedding_model": embedding_model,
+                            "embedding_latency_ms": total_embedding_latency_ms,
+                            "retrieval_latency_ms": total_retrieval_latency_ms,
+                            "embedding_tokens": total_embedding_tokens,
+                            "upstream_request_ids": upstream_request_ids,
+                            "generation_request_ids": generation_request_ids,
+                            "estimated_cost_usd": estimated_cost_usd,
+                            "estimated_embedding_cost_usd": embedding_cost
+            }
+    return request_record
