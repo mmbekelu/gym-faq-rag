@@ -11,8 +11,19 @@ for question in questions:
     print(question["question"])
     print(question["expected_refusal"])
     print(question["expected_faq_ids"])
+    result = process_question(question["question"])
+    print(result["answer"])
+    print(question["expected_refusal"] == result["refused"])
+    print(question["category"])
+    print(result["retrieved_docs"])
+    if question["expected_faq_ids"]:
+        expected_id = question["expected_faq_ids"][0]
+        print("Nothing")
+    print(expected_id)
+    source_found = False
 
-result = process_question(questions[0]["question"])
-print(result["answer"])
-print(questions[0]["expected_refusal"] == result["refused"])
-print(questions[0]["category"])
+for document in result["retrieved_docs"]:
+    if expected_id in document:
+        source_found = True
+
+print(source_found)
