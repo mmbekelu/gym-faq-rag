@@ -6,7 +6,7 @@ with open("evals/questions.json", "r", encoding="utf-8") as file:
 
 print(len(questions))
 
-for question in questions:
+for question in questions[:1]:
     print(question["id"])
     print(question["question"])
     print(question["expected_refusal"])
@@ -18,12 +18,17 @@ for question in questions:
     print(result["retrieved_docs"])
     if question["expected_faq_ids"]:
         expected_id = question["expected_faq_ids"][0]
-        print("Nothing")
+    else:
+         print("Nothing")
+         expected_id = None
     print(expected_id)
     source_found = False
 
-for document in result["retrieved_docs"]:
-    if expected_id in document:
-        source_found = True
+    for document in result["retrieved_docs"]:
+        if expected_id == None:
+            pass
+        else:
+            if expected_id in document:
+                source_found = True
 
-print(source_found)
+    print(source_found)
