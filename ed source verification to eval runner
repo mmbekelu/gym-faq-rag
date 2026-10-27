@@ -1,0 +1,36 @@
+[1mdiff --git a/evals/run_evals.py b/evals/run_evals.py[m
+[1mindex 983270c..9ee875a 100644[m
+[1m--- a/evals/run_evals.py[m
+[1m+++ b/evals/run_evals.py[m
+[36m@@ -6,7 +6,7 @@[m [mwith open("evals/questions.json", "r", encoding="utf-8") as file:[m
+ [m
+ print(len(questions))[m
+ [m
+[31m-for question in questions:[m
+[32m+[m[32mfor question in questions[:1]:[m
+     print(question["id"])[m
+     print(question["question"])[m
+     print(question["expected_refusal"])[m
+[36m@@ -18,12 +18,17 @@[m [mfor question in questions:[m
+     print(result["retrieved_docs"])[m
+     if question["expected_faq_ids"]:[m
+         expected_id = question["expected_faq_ids"][0][m
+[31m-        print("Nothing")[m
+[32m+[m[32m    else:[m
+[32m+[m[32m         print("Nothing")[m
+[32m+[m[32m         expected_id = None[m
+     print(expected_id)[m
+     source_found = False[m
+ [m
+[31m-for document in result["retrieved_docs"]:[m
+[31m-    if expected_id in document:[m
+[31m-        source_found = True[m
+[32m+[m[32m    for document in result["retrieved_docs"]:[m
+[32m+[m[32m        if expected_id == None:[m
+[32m+[m[32m            pass[m
+[32m+[m[32m        else:[m
+[32m+[m[32m            if expected_id in document:[m
+[32m+[m[32m                source_found = True[m
+ [m
+[31m-print(source_found)[m
+[32m+[m[32m    print(source_found)[m

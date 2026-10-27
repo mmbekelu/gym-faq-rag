@@ -126,6 +126,7 @@ def process_question(question):
                             "upstream_request_ids": upstream_request_ids,
                             "generation_request_ids": generation_request_ids,
                             "estimated_cost_usd": estimated_cost_usd,
-                            "estimated_embedding_cost_usd": embedding_cost
+                            "estimated_embedding_cost_usd": embedding_cost,
+                            "retrieved_docs": docs
             }
     return request_record
