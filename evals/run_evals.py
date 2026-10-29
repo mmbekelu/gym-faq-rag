@@ -32,3 +32,14 @@ for question in questions[:1]:
                 source_found = True
 
     print(source_found)
+
+    if question["expected_faq_ids"]:
+        evaluation_passed = question["expected_refusal"] == result["refused"] and source_found
+    else:
+        evaluation_passed = question["expected_refusal"] == result["refused"]
+
+    print(evaluation_passed)
+
+    if question["must_include"]:
+        for include in question["must_include"]:
+            print(include in result["answer"])
