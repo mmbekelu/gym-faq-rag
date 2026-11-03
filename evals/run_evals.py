@@ -55,7 +55,15 @@ for question in questions:
 
     evaluation_record = {
         "id": question["id"],
-    "passed": evaluation_passed
+    "passed": evaluation_passed,
+    "answer": result["answer"],
+    "refused": result["refused"],
+    "source_found": source_found,
+    "expected_faq_ids": question["expected_faq_ids"],
+    "retrieved_chunk_ids": result["retrieved_chunk_ids"],
+    "total_latency_ms": result["total_latency_ms"],
+    "total_tokens": result["total_tokens"],
+    "estimated_cost_usd": result["estimated_cost_usd"]
     }
     evaluation_results.append(evaluation_record)
 

@@ -1,82 +1,486 @@
 [
     {
         "id": "eval-001",
-        "passed": true
+        "passed": true,
+        "answer": "Yes. The gym has step-free entry, accessible restrooms, and selected equipment designed for users with limited mobility.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-019"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-18",
+            "faqs-8"
+        ],
+        "total_latency_ms": 3994.322699989425,
+        "total_tokens": 282,
+        "estimated_cost_usd": 3.918e-05
     },
     {
         "id": "eval-002",
-        "passed": true
+        "passed": true,
+        "answer": "The gym is open Monday through Friday from 5:00 AM to 11:00 PM.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-001"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-0",
+            "faqs-1"
+        ],
+        "total_latency_ms": 2034.4487999973353,
+        "total_tokens": 266,
+        "estimated_cost_usd": 3.638e-05
     },
     {
         "id": "eval-003",
-        "passed": true
+        "passed": true,
+        "answer": "The gym is open Saturday and Sunday from 7:00 AM to 9:00 PM.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-002"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-1",
+            "faqs-0"
+        ],
+        "total_latency_ms": 1854.3783000059193,
+        "total_tokens": 266,
+        "estimated_cost_usd": 3.638e-05
     },
     {
         "id": "eval-004",
-        "passed": true
+        "passed": true,
+        "answer": "Members may freeze their membership for up to 90 days, once per calendar year.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-004"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-3",
+            "faqs-4"
+        ],
+        "total_latency_ms": 1846.069899998838,
+        "total_tokens": 256,
+        "estimated_cost_usd": 3.414e-05
     },
     {
         "id": "eval-005",
-        "passed": true
+        "passed": true,
+        "answer": "A single-day guest pass costs $15.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-008"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-7",
+            "faqs-6"
+        ],
+        "total_latency_ms": 1926.813600002788,
+        "total_tokens": 233,
+        "estimated_cost_usd": 2.8700000000000003e-05
     },
     {
         "id": "eval-006",
-        "passed": true
+        "passed": true,
+        "answer": "Submit your cancellation through the front desk or member portal at least 7 days before your next billing date. Partial refunds aren\u2019t provided for unused days in the billing period.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-005"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-4",
+            "faqs-5"
+        ],
+        "total_latency_ms": 1663.4049999993294,
+        "total_tokens": 284,
+        "estimated_cost_usd": 4.3740000000000005e-05
     },
     {
         "id": "eval-007",
-        "passed": true
+        "passed": true,
+        "answer": "No. At 17, you need a parent or guardian to sign the membership agreement.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-009"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-8",
+            "faqs-15"
+        ],
+        "total_latency_ms": 1289.1808999993373,
+        "total_tokens": 289,
+        "estimated_cost_usd": 3.8039999999999995e-05
     },
     {
         "id": "eval-008",
-        "passed": true
+        "passed": true,
+        "answer": "Yes. Standard group fitness classes are included with all active memberships, unless a class is marked as a premium program.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-010"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-9",
+            "faqs-10"
+        ],
+        "total_latency_ms": 1596.8027999915648,
+        "total_tokens": 266,
+        "estimated_cost_usd": 3.758e-05
     },
     {
         "id": "eval-009",
-        "passed": true
+        "passed": true,
+        "answer": "Yes. Members should reserve a spot through the member portal because class space is limited.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-011"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-10",
+            "faqs-9"
+        ],
+        "total_latency_ms": 2083.5818000050494,
+        "total_tokens": 310,
+        "estimated_cost_usd": 5.9199999999999996e-05
     },
     {
         "id": "eval-010",
-        "passed": true
+        "passed": true,
+        "answer": "No. Loose powder chalk isn\u2019t permitted. Liquid chalk is allowed in designated lifting areas.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-013"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-12",
+            "faqs-13"
+        ],
+        "total_latency_ms": 1627.0427999988897,
+        "total_tokens": 262,
+        "estimated_cost_usd": 3.5199999999999995e-05
     },
     {
         "id": "eval-011",
-        "passed": true
+        "passed": true,
+        "answer": "Yes. You may film yourself as long as you don\u2019t include other members without their permission or block equipment or walkways.",
+        "refused": false,
+        "source_found": true,
+        "expected_faq_ids": [
+            "FAQ-016"
+        ],
+        "retrieved_chunk_ids": [
+            "faqs-15",
+            "faqs-12"
+        ],
+        "total_latency_ms": 2300.9350999927847,
+        "total_tokens": 306,
+        "estimated_cost_usd": 5.5219999999999996e-05
     },
     {
         "id": "eval-012",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-0",
+            "faqs-17",
+            "faqs-1",
+            "faqs-8",
+            "faqs-18",
+            "faqs-19",
+            "faqs-16",
+            "faqs-2",
+            "faqs-15",
+            "faqs-11",
+            "faqs-14",
+            "faqs-9",
+            "faqs-10",
+            "faqs-5",
+            "faqs-13",
+            "faqs-4",
+            "faqs-6",
+            "faqs-12",
+            "faqs-7",
+            "faqs-3"
+        ],
+        "total_latency_ms": 2948.1590000068536,
+        "total_tokens": 1272,
+        "estimated_cost_usd": 0.00014196
     },
     {
         "id": "eval-013",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-2",
+            "faqs-1",
+            "faqs-0",
+            "faqs-3",
+            "faqs-13",
+            "faqs-19",
+            "faqs-5",
+            "faqs-17",
+            "faqs-8",
+            "faqs-10",
+            "faqs-18",
+            "faqs-9",
+            "faqs-14",
+            "faqs-15",
+            "faqs-11",
+            "faqs-4",
+            "faqs-16",
+            "faqs-12",
+            "faqs-6",
+            "faqs-7"
+        ],
+        "total_latency_ms": 3172.9921999940416,
+        "total_tokens": 1264,
+        "estimated_cost_usd": 0.00014124
     },
     {
         "id": "eval-014",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-15",
+            "faqs-0",
+            "faqs-11",
+            "faqs-1",
+            "faqs-19",
+            "faqs-14",
+            "faqs-16",
+            "faqs-17",
+            "faqs-18",
+            "faqs-8",
+            "faqs-2",
+            "faqs-9",
+            "faqs-5",
+            "faqs-13",
+            "faqs-10",
+            "faqs-12",
+            "faqs-6",
+            "faqs-3",
+            "faqs-4",
+            "faqs-7"
+        ],
+        "total_latency_ms": 2823.409000004176,
+        "total_tokens": 1278,
+        "estimated_cost_usd": 0.00014260000000000002
     },
     {
         "id": "eval-015",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-18",
+            "faqs-16",
+            "faqs-2",
+            "faqs-17",
+            "faqs-9",
+            "faqs-11",
+            "faqs-0",
+            "faqs-1",
+            "faqs-15",
+            "faqs-19",
+            "faqs-8",
+            "faqs-10",
+            "faqs-5",
+            "faqs-14",
+            "faqs-13",
+            "faqs-3",
+            "faqs-6",
+            "faqs-12",
+            "faqs-4",
+            "faqs-7"
+        ],
+        "total_latency_ms": 2422.2022000030847,
+        "total_tokens": 1281,
+        "estimated_cost_usd": 0.00014842000000000002
     },
     {
         "id": "eval-016",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-2",
+            "faqs-9",
+            "faqs-3",
+            "faqs-7",
+            "faqs-17",
+            "faqs-4",
+            "faqs-16",
+            "faqs-8",
+            "faqs-6",
+            "faqs-5",
+            "faqs-10",
+            "faqs-1",
+            "faqs-19",
+            "faqs-0",
+            "faqs-18",
+            "faqs-14",
+            "faqs-11",
+            "faqs-15",
+            "faqs-13",
+            "faqs-12"
+        ],
+        "total_latency_ms": 2691.1259000044083,
+        "total_tokens": 1268,
+        "estimated_cost_usd": 0.00014632
     },
     {
         "id": "eval-017",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-9",
+            "faqs-10",
+            "faqs-2",
+            "faqs-17",
+            "faqs-7",
+            "faqs-16",
+            "faqs-1",
+            "faqs-0",
+            "faqs-5",
+            "faqs-19",
+            "faqs-8",
+            "faqs-15",
+            "faqs-18",
+            "faqs-4",
+            "faqs-11",
+            "faqs-14",
+            "faqs-3",
+            "faqs-13",
+            "faqs-6",
+            "faqs-12"
+        ],
+        "total_latency_ms": 2447.172500003944,
+        "total_tokens": 1271,
+        "estimated_cost_usd": 0.00014193999999999999
     },
     {
         "id": "eval-018",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-11",
+            "faqs-0",
+            "faqs-19",
+            "faqs-10",
+            "faqs-13",
+            "faqs-15",
+            "faqs-12",
+            "faqs-1",
+            "faqs-7",
+            "faqs-6",
+            "faqs-17",
+            "faqs-4",
+            "faqs-3",
+            "faqs-18",
+            "faqs-16",
+            "faqs-5",
+            "faqs-8",
+            "faqs-14",
+            "faqs-2",
+            "faqs-9"
+        ],
+        "total_latency_ms": 3384.204799993313,
+        "total_tokens": 1290,
+        "estimated_cost_usd": 0.0001492
     },
     {
         "id": "eval-019",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-17",
+            "faqs-9",
+            "faqs-8",
+            "faqs-15",
+            "faqs-2",
+            "faqs-5",
+            "faqs-10",
+            "faqs-18",
+            "faqs-19",
+            "faqs-13",
+            "faqs-16",
+            "faqs-0",
+            "faqs-4",
+            "faqs-1",
+            "faqs-14",
+            "faqs-11",
+            "faqs-3",
+            "faqs-6",
+            "faqs-12",
+            "faqs-7"
+        ],
+        "total_latency_ms": 2837.5680000026478,
+        "total_tokens": 1332,
+        "estimated_cost_usd": 0.00016096
     },
     {
         "id": "eval-020",
-        "passed": true
+        "passed": true,
+        "answer": "I don\u2019t have enough information in the gym FAQ to answer that.",
+        "refused": true,
+        "source_found": false,
+        "expected_faq_ids": [],
+        "retrieved_chunk_ids": [
+            "faqs-0",
+            "faqs-1",
+            "faqs-19",
+            "faqs-11",
+            "faqs-8",
+            "faqs-17",
+            "faqs-2",
+            "faqs-15",
+            "faqs-18",
+            "faqs-9",
+            "faqs-5",
+            "faqs-13",
+            "faqs-10",
+            "faqs-14",
+            "faqs-16",
+            "faqs-3",
+            "faqs-4",
+            "faqs-12",
+            "faqs-6",
+            "faqs-7"
+        ],
+        "total_latency_ms": 2764.654499987955,
+        "total_tokens": 1320,
+        "estimated_cost_usd": 0.00015536
     }
 ]
