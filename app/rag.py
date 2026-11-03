@@ -57,7 +57,22 @@ def retrieve(question: str, n_results: int) -> tuple[list[str], list[str], list[
 
 def generation(question: str, retrieved_strings: list[str]) -> tuple[str, float, int, int, int, str, str | None]:
     combined = " ".join(retrieved_strings)
-    instructions = "Answer only using the retrieved FAQ context. If the context does not contain enough information to answer the question, reply exactly: 'I don’t have enough information in the gym FAQ to answer that.' Otherwise, answer using only the retrieved FAQ context and do not invent gym policy."
+    instructions = (
+        "Answer using only the retrieved gym FAQ context. "
+        "First determine whether the FAQ provides enough information "
+        "to answer the user's specific question. "
+
+        "If the information is insufficient, reply with exactly this sentence: "
+        "'I don’t have enough information in the gym FAQ to answer that.' "
+        "Do not paraphrase this refusal, add explanations, or include other facts. "
+        "This refusal rule takes priority over all answer-completeness instructions. "
+
+        "If the information is sufficient, give an accurate, concise answer "
+        "using only the retrieved FAQ context. "
+        "Include relevant conditions, restrictions, and exceptions. "
+        "When the relevant FAQ explains both what is allowed and what is prohibited, "
+        "include both details without inventing additional gym policies."
+    )
     input_text = f"Question:\n{question}\n\nRetrieved FAQ context:\n{combined}"
     start_time = time.perf_counter()
     response = client.responses.create(model="gpt-6-luna", instructions=instructions, input=input_text)

@@ -6,7 +6,9 @@ with open("evals/questions.json", "r", encoding="utf-8") as file:
 
 print(len(questions))
 
-for question in questions[:1]:
+evaluation_results = []
+
+for question in questions:
     print(question["id"])
     print(question["question"])
     print(question["expected_refusal"])
@@ -38,8 +40,24 @@ for question in questions[:1]:
     else:
         evaluation_passed = question["expected_refusal"] == result["refused"]
 
-    print(evaluation_passed)
+    
 
     if question["must_include"]:
         for include in question["must_include"]:
-            print(include in result["answer"])
+            evaluation_passed = evaluation_passed and include.lower() in result["answer"].lower()
+
+
+    if question["must_not_include"]:
+        for include in question["must_not_include"]:
+            evaluation_passed = evaluation_passed and include.lower() not in result["answer"].lower()
+
+    print(evaluation_passed)
+
+    evaluation_record = {
+        "id": question["id"],
+    "passed": evaluation_passed
+    }
+    evaluation_results.append(evaluation_record)
+
+with open("evals/results/baseline.json", "w", encoding="utf-8") as file:
+    json.dump(evaluation_results, file, indent=4)
