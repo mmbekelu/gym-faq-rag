@@ -12,7 +12,7 @@
             "faqs-18",
             "faqs-8"
         ],
-        "total_latency_ms": 3994.322699989425,
+        "total_latency_ms": 2601.9361999988178,
         "total_tokens": 282,
         "estimated_cost_usd": 3.918e-05
     },
@@ -29,7 +29,7 @@
             "faqs-0",
             "faqs-1"
         ],
-        "total_latency_ms": 2034.4487999973353,
+        "total_latency_ms": 1298.7861999990855,
         "total_tokens": 266,
         "estimated_cost_usd": 3.638e-05
     },
@@ -46,14 +46,14 @@
             "faqs-1",
             "faqs-0"
         ],
-        "total_latency_ms": 1854.3783000059193,
+        "total_latency_ms": 1343.0226999989827,
         "total_tokens": 266,
         "estimated_cost_usd": 3.638e-05
     },
     {
         "id": "eval-004",
         "passed": true,
-        "answer": "Members may freeze their membership for up to 90 days, once per calendar year.",
+        "answer": "Yes. You may freeze your membership for up to 90 days once per calendar year.",
         "refused": false,
         "source_found": true,
         "expected_faq_ids": [
@@ -63,9 +63,9 @@
             "faqs-3",
             "faqs-4"
         ],
-        "total_latency_ms": 1846.069899998838,
-        "total_tokens": 256,
-        "estimated_cost_usd": 3.414e-05
+        "total_latency_ms": 1239.7036999991542,
+        "total_tokens": 257,
+        "estimated_cost_usd": 3.464e-05
     },
     {
         "id": "eval-005",
@@ -80,7 +80,7 @@
             "faqs-7",
             "faqs-6"
         ],
-        "total_latency_ms": 1926.813600002788,
+        "total_latency_ms": 1209.8815000008472,
         "total_tokens": 233,
         "estimated_cost_usd": 2.8700000000000003e-05
     },
@@ -97,14 +97,14 @@
             "faqs-4",
             "faqs-5"
         ],
-        "total_latency_ms": 1663.4049999993294,
+        "total_latency_ms": 1536.5959999999177,
         "total_tokens": 284,
         "estimated_cost_usd": 4.3740000000000005e-05
     },
     {
         "id": "eval-007",
         "passed": true,
-        "answer": "No. At 17, you need a parent or guardian to sign the membership agreement.",
+        "answer": "No. If you\u2019re 17, a parent or guardian must sign the membership agreement.",
         "refused": false,
         "source_found": true,
         "expected_faq_ids": [
@@ -114,14 +114,14 @@
             "faqs-8",
             "faqs-15"
         ],
-        "total_latency_ms": 1289.1808999993373,
-        "total_tokens": 289,
-        "estimated_cost_usd": 3.8039999999999995e-05
+        "total_latency_ms": 1879.5262000003277,
+        "total_tokens": 336,
+        "estimated_cost_usd": 6.154e-05
     },
     {
         "id": "eval-008",
         "passed": true,
-        "answer": "Yes. Standard group fitness classes are included with all active memberships, unless a class is marked as a premium program.",
+        "answer": "Yes. Standard group fitness classes are included with all active memberships unless marked as a premium program.",
         "refused": false,
         "source_found": true,
         "expected_faq_ids": [
@@ -131,9 +131,9 @@
             "faqs-9",
             "faqs-10"
         ],
-        "total_latency_ms": 1596.8027999915648,
-        "total_tokens": 266,
-        "estimated_cost_usd": 3.758e-05
+        "total_latency_ms": 1249.1509999999835,
+        "total_tokens": 262,
+        "estimated_cost_usd": 3.558e-05
     },
     {
         "id": "eval-009",
@@ -148,14 +148,14 @@
             "faqs-10",
             "faqs-9"
         ],
-        "total_latency_ms": 2083.5818000050494,
-        "total_tokens": 310,
-        "estimated_cost_usd": 5.9199999999999996e-05
+        "total_latency_ms": 1569.306699999288,
+        "total_tokens": 288,
+        "estimated_cost_usd": 4.82e-05
     },
     {
         "id": "eval-010",
         "passed": true,
-        "answer": "No. Loose powder chalk isn\u2019t permitted. Liquid chalk is allowed in designated lifting areas.",
+        "answer": "No. Loose powder chalk is not permitted; liquid chalk is allowed in designated lifting areas.",
         "refused": false,
         "source_found": true,
         "expected_faq_ids": [
@@ -165,14 +165,14 @@
             "faqs-12",
             "faqs-13"
         ],
-        "total_latency_ms": 1627.0427999988897,
+        "total_latency_ms": 1710.1929999989807,
         "total_tokens": 262,
         "estimated_cost_usd": 3.5199999999999995e-05
     },
     {
         "id": "eval-011",
         "passed": true,
-        "answer": "Yes. You may film yourself as long as you don\u2019t include other members without their permission or block equipment or walkways.",
+        "answer": "Yes. You can film yourself as long as you don\u2019t include other members without their permission or block equipment or walkways.",
         "refused": false,
         "source_found": true,
         "expected_faq_ids": [
@@ -182,9 +182,9 @@
             "faqs-15",
             "faqs-12"
         ],
-        "total_latency_ms": 2300.9350999927847,
-        "total_tokens": 306,
-        "estimated_cost_usd": 5.5219999999999996e-05
+        "total_latency_ms": 1736.1485000001267,
+        "total_tokens": 305,
+        "estimated_cost_usd": 5.472e-05
     },
     {
         "id": "eval-012",
@@ -215,7 +215,7 @@
             "faqs-7",
             "faqs-3"
         ],
-        "total_latency_ms": 2948.1590000068536,
+        "total_latency_ms": 2129.9072000001615,
         "total_tokens": 1272,
         "estimated_cost_usd": 0.00014196
     },
@@ -248,9 +248,9 @@
             "faqs-6",
             "faqs-7"
         ],
-        "total_latency_ms": 3172.9921999940416,
-        "total_tokens": 1264,
-        "estimated_cost_usd": 0.00014124
+        "total_latency_ms": 2664.686600001005,
+        "total_tokens": 1303,
+        "estimated_cost_usd": 0.00016073999999999998
     },
     {
         "id": "eval-014",
@@ -281,7 +281,7 @@
             "faqs-4",
             "faqs-7"
         ],
-        "total_latency_ms": 2823.409000004176,
+        "total_latency_ms": 2341.7484999990847,
         "total_tokens": 1278,
         "estimated_cost_usd": 0.00014260000000000002
     },
@@ -314,9 +314,9 @@
             "faqs-4",
             "faqs-7"
         ],
-        "total_latency_ms": 2422.2022000030847,
-        "total_tokens": 1281,
-        "estimated_cost_usd": 0.00014842000000000002
+        "total_latency_ms": 2539.041600000928,
+        "total_tokens": 1278,
+        "estimated_cost_usd": 0.00014692
     },
     {
         "id": "eval-016",
@@ -347,9 +347,9 @@
             "faqs-13",
             "faqs-12"
         ],
-        "total_latency_ms": 2691.1259000044083,
-        "total_tokens": 1268,
-        "estimated_cost_usd": 0.00014632
+        "total_latency_ms": 2167.9334999989806,
+        "total_tokens": 1267,
+        "estimated_cost_usd": 0.00014581999999999998
     },
     {
         "id": "eval-017",
@@ -380,9 +380,9 @@
             "faqs-6",
             "faqs-12"
         ],
-        "total_latency_ms": 2447.172500003944,
-        "total_tokens": 1271,
-        "estimated_cost_usd": 0.00014193999999999999
+        "total_latency_ms": 2547.8456000000733,
+        "total_tokens": 1290,
+        "estimated_cost_usd": 0.00015143999999999997
     },
     {
         "id": "eval-018",
@@ -413,9 +413,9 @@
             "faqs-2",
             "faqs-9"
         ],
-        "total_latency_ms": 3384.204799993313,
-        "total_tokens": 1290,
-        "estimated_cost_usd": 0.0001492
+        "total_latency_ms": 2424.239600000874,
+        "total_tokens": 1288,
+        "estimated_cost_usd": 0.0001482
     },
     {
         "id": "eval-019",
@@ -446,9 +446,9 @@
             "faqs-12",
             "faqs-7"
         ],
-        "total_latency_ms": 2837.5680000026478,
-        "total_tokens": 1332,
-        "estimated_cost_usd": 0.00016096
+        "total_latency_ms": 2639.1791999994894,
+        "total_tokens": 1339,
+        "estimated_cost_usd": 0.00016446
     },
     {
         "id": "eval-020",
@@ -479,8 +479,8 @@
             "faqs-6",
             "faqs-7"
         ],
-        "total_latency_ms": 2764.654499987955,
-        "total_tokens": 1320,
-        "estimated_cost_usd": 0.00015536
+        "total_latency_ms": 2631.9069000001036,
+        "total_tokens": 1329,
+        "estimated_cost_usd": 0.00015986
     }
 ]

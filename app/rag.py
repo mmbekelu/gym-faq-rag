@@ -13,7 +13,11 @@ def load_faqs(path: Path) -> str:
 
 def chunk_text(text) -> list[str]: 
     parts = text.split("---")
-    return parts
+    clean_parts = []
+    for part in parts:
+        if part !="" and part.strip():
+            clean_parts.append(part)
+    return clean_parts
 
 
 def index_chunks(chunks: list[str]) -> int:
